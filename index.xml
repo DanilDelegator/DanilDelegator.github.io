@@ -6,9 +6,22 @@
     <description>Recent content on Danil Delegator&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sat, 11 Apr 2020 19:04:44 +0300</lastBuildDate>
     
 	<atom:link href="https://danildelegator.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>GithubCourseCodeQLU Boot</title>
+      <link>https://danildelegator.github.io/codeqlbootu/</link>
+      <pubDate>Sat, 11 Apr 2020 19:04:44 +0300</pubDate>
+      
+      <guid>https://danildelegator.github.io/codeqlbootu/</guid>
+      <description>GitHub Course CodeQL U-Boot Those are my solutions to GitHub Course CodeQL U-Boot, posting them here because I felt like they are going to be good as a cheat sheet.
+Solutions  Get all function definitions with the name strlen
+import cpp from Function f where f.getName() = &amp;#34;strlen&amp;#34; select f, &amp;#34;a fucntion named strlen&amp;#34;  Get all the macro definitions with a regex ntohs|ntohl|ntohll
+import cpp from Macro m where m.</description>
+    </item>
     
   </channel>
 </rss>
