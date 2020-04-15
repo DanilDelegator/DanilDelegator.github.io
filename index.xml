@@ -6,10 +6,22 @@
     <description>Recent content on Danil Delegator&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Apr 2020 19:04:44 +0300</lastBuildDate>
+    <lastBuildDate>Wed, 15 Apr 2020 11:45:03 +0300</lastBuildDate>
     
 	<atom:link href="https://danildelegator.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Day0</title>
+      <link>https://danildelegator.github.io/day0/</link>
+      <pubDate>Wed, 15 Apr 2020 11:45:03 +0300</pubDate>
+      
+      <guid>https://danildelegator.github.io/day0/</guid>
+      <description>Day 0 Recently I encountered this post series by @int0x33 and felt inspired to do something similar. So i&amp;rsquo;ve decided to post something new I learn or did every day for the next 100 days.
+So lets start from the first challenge @int0x33 did.
+First after running the binary we see it has a stack overflow. we confirm it by running: python3 -c &amp;quot;print(&#39;A&#39;*40 + &#39;B&#39;*4)&amp;quot; | ./ret2win.
+If we do not know the offset of the ret address we can use gef&amp;rsquo;s pattern create and pattern offset features.</description>
+    </item>
     
     <item>
       <title>GithubCourseCodeQLU Boot</title>

