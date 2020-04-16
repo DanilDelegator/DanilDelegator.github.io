@@ -81,8 +81,8 @@ If we do not know the offset of the ret address we can use gef&rsquo;s pattern c
 <p>First after running the binary we see it has a stack overflow. we confirm it by running:
 <code>python3 -c &quot;print('A'*40 + 'B'*4)&quot; | ./ret2win</code>.</p>
 <p>If we do not know the offset of the ret address we can use gef&rsquo;s <code>pattern create</code> and <code>pattern offset</code> features.</p>
-<p>Using <code>checksec</code> we can see that the binary does not have aslr or canary enabled but does have nx. This is consistent with a stackoverflow + rop challenge:
-<img src="/images/day0checksec.png" alt="checksec"></p>
+<p>Using <code>checksec</code> we can see that the binary does not have aslr or canary enabled but does have nx. This is consistent with a stackoverflow + rop challenge:</p>
+<p><img src="/images/day0checksec.png" alt="checksec"></p>
 <p>So we try to find a &ldquo;gadget&rdquo; that we can point our overwritten return address to (no canary). We notice the function ret2win right away, Check what the address is (no aslr) and write a poc:
 <code>python3 -c &quot;print('A'*40 + '\x12\x08@\x00\x00\x00\x00\x00')&quot; | ./ret2win</code>.</p>
 <p>Now we write a nicer version using pwntools:</p>
